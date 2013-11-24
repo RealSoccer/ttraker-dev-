@@ -1,0 +1,16 @@
+/.bundle
+/db/*.sqlite3
+/log/*.log
+/tmp
+coverage
+.DS_Store
+public/system/company_logos
+public/assets
+doc/app/
+config/initializers/*.sample
+config/database.yml
+.rvmrc
+.rspec
+.simplecov
+.slugignore
+

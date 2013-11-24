@@ -1,0 +1,35 @@
+- content_for(:title, 'Company')
+.row
+  .span2
+    = render :partial => "shared/sidebar"
+  .span9
+    .title-area
+      %h1 Company Overview
+    .area
+      - if !@current_company
+        %div.alert{ :class => twitterized_type(:error) }
+          %a.close{ "data-dismiss" => "alert" } x
+          You have not set up your company.
+      - if !@current_company 
+        %p Click here to create your company.
+        = render 'form'
+      - else
+        %dl.dl-horizontal
+          %dt Company Name:
+          %dd= @current_company.name
+          %dt Registration ID:
+          - if @current_company.registration_number != ""
+            %dd= @current_company.registration_number
+          - else
+            %dd No registration number
+          - if current_user.company.image?
+            %dt Logo:
+            %dd= image_tag current_user.company.image.url(:medium)
+        %p
+          %a.btn.btn-primary{ :href => edit_company_path(@current_company) }
+            %i.icon-pencil.icon-white
+            Edit Company
+    .title-area
+      %h1 Company Users
+    .area
+      = render :partial => "company/company_users"

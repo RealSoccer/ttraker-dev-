@@ -1,0 +1,16 @@
+- content_for(:title, 'Company User')
+.row
+  .span2
+    = render :partial => "shared/sidebar"
+  .span9
+    .title-area
+      %h1
+        = "#{@user.firstname} #{@user.lastname}"
+        = @user.company_admin ? "(Admin)" : nil
+    .area
+      %h3 Role
+      %p= @user.owns_company ? "Management" : "User"
+      %h3 Email
+      %p= @user.email
+      %hr
+      = link_to "Back to Company", company_index_path, :class => "btn"

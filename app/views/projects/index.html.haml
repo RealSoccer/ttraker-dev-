@@ -1,0 +1,37 @@
+- content_for(:title, 'Projects')
+.row
+  .span2
+    = render :partial => "shared/sidebar"
+  .span9
+    .title-area
+      %h1 Projects
+    .area#projects
+      %table.table.table-striped
+        %thead
+          %tr
+            %th Project Name
+            %th Status
+            %th 
+        - @projects.each do |p|
+          %tr{ :id => p.id }
+            %td= p.name
+            %td
+              - if p.status == "Active"
+                %span.label.label-info= p.status
+              - elsif p.status == "Completed"
+                %span.label.label-success= p.status
+              - else
+                %span.label.label-important= p.status
+            %td
+              = link_to project_path(p), :class => "btn" do
+                Show
+              = link_to edit_project_path(p), :remote => true, :class => "btn" do
+                Edit
+              = link_to p, :confirm => "Are you sure?", :method => :delete, :remote => true, :class => "btn btn-danger" do
+                Delete
+      = link_to "Add Project", new_project_path, :remote => true, :class => "btn btn-primary"
+      - if @archived_projects_count > 0
+        %hr
+        %p
+          = "You have #{@archived_projects_count} archived project(s)."
+          = link_to "Click here to view archived projects.", archived_projects_path

@@ -1,0 +1,20 @@
+- content_for(:title, 'TimeTracker')
+.main
+  .about-intro
+    %h1 About TimeTracker
+    .area
+      %p I hope that this service can be of use to you, if you need any assistance or have any specific requests, please contact me via #{ link_to 'LinkedIn', 'http://www.linkedin.com/in/IMRasmus', :target => '_blank'} and I am sure we will be able to work something out. 
+      %br
+      %h2 Disclaimer
+      %p TimeTracker is hosted and maintained by #{ link_to 'Rasmus Bergström', 'http://www.linkedin.com/in/IMRasmus', :target => '_blank'}. The service is not to be associated with my employer Doidea AB in any way.
+      %br
+      %br
+      %br
+    .about-bottom
+      - if current_user
+        %p Go to your Dashboard
+        %p= link_to "Dashboard", dashboard_index_path, :class => "btn btn-primary btn-large"
+      - else
+        %p
+          = link_to "Login", new_user_session_path, :class => "btn btn-primary btn-large"
+          = link_to "Try For Free", new_user_registration_path, :class => "btn btn-primary btn-large"

@@ -1,0 +1,1 @@
+Plan.create!(:title => "Free", :description => "Perfect for small organisations", :value => 0, :duration => "MONTHLY", :project_count => 100, :user_count => 100)

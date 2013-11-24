@@ -1,0 +1,32 @@
+%table.table.table-striped
+  %thead
+    %tr
+      %th ID
+      %th Role
+      %th First Name
+      %th Last Name
+      %th Email
+      %th
+      %th 
+  - @current_company.users.each do |u|
+    %tr
+      %td= u.id
+      %td= u.owns_company ? "Owner" : "User"
+      %td= u.firstname
+      %td= u.lastname
+      %td= u.email
+      %td
+        %a.btn{ :href => company_user_path(u) }
+          %i.icon-search
+          Show
+      %td
+        - if !u.company_admin?
+          %a.btn.btn-danger{ 'data-method' => :delete, 'data-confirm' => 'Are you sure?', :href => company_user_path(u) }
+            %i.icon-trash.icon-white
+            Delete
+        /= link_to "Delete", company_user_path(u), :confirm => 'Are you sure?', :method => :delete, :class => "btn btn-danger" if !u.owns_company?
+        
+%p
+  %a.btn.btn-primary{ :href => new_company_user_path }
+    %i.icon-plus.icon-white
+    Add User

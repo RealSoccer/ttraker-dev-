@@ -1,0 +1,51 @@
+- content_for(:title, 'Developers')
+.row
+  .span2
+    = render :partial => "shared/developer_sidebar"
+  .span9
+    .title-area
+      %h1 Your Applications
+    .area#developers
+      - if @applications.count < 1
+        %p You currently have no applications.
+      - else
+        %table.table.table-striped#tasks
+          %thead
+            %tr
+              %th Application Name
+              %th Status
+              %th
+          - @applications.each do |application|
+            %tr{ :id => application.id}
+              %td= application.name
+              %td 
+                - if application.active
+                  %span.label.label-success= "Active"
+                - else
+                  %span.label.label-important= "Not active"
+              %td
+                = link_to developer_path(application), :class => "btn" do
+                  Show
+                = link_to edit_developer_path(application), :class => "btn" do
+                  Edit
+                = link_to developer_path(application), :confirm => "Are you sure?", :method => :delete, :class => "btn btn-danger" do
+                  Delete
+      = link_to "Create new application", new_developer_path, :class => "btn btn-primary"
+    .title-area
+      %h1 TimeTracker Developers
+    .area#developers
+      %p All API calls require you to set your API key in the request header as:
+      %p
+        %b "api_key"
+      %h2 api/v1/login
+      %p Returns the Token used for accessing accounts and data.
+      %h4 Parameters
+      %ul
+        %li
+          %h4 email
+          %p The email address of the user logging in
+        %li
+          %h4 password
+          %p The password of the user logging in
+      %h4 Example Response
+      %p Coming soon...

@@ -1,0 +1,24 @@
+- content_for(:title, 'Application')
+.row
+  .span2
+    = render :partial => "shared/developer_sidebar"
+  .span9
+    .title-area
+      %h1
+        Application
+        - if @application.active
+          %span.label.label-success= "Active"
+        - else
+          %span.label.label-important= "Not active"
+    .area#developers
+      %h4 Application Name
+      %p= @application.name
+      %h4 Application Description
+      %p= @application.description
+      %h4 Application URL
+      %p= @application.url != "" ? @application.url : "No URL set."
+      %h4 API Key
+      %p= @application.api_key
+      %h4 Secret Key
+      %p= @application.secret_key
+      = link_to "Back", developer_index_path, :class => "btn"

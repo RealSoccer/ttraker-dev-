@@ -1,0 +1,9 @@
+- content_for(:title, 'TimeTracker - Plans & Pricing')
+.main
+  .area
+    .subscriptions
+      %h2 Available Plans
+      %br
+      - @plans.each do |plan|
+        = render :partial => "home/plan", :locals => { :plan => plan }
+      %p *We start you up with 1000 projects and users in the insane plan, if you need more we simply boost it up

@@ -1,0 +1,31 @@
+- content_for(:title, 'TimeTracker')
+.main
+  .home-intro
+    %h1 Track your time and generate reports
+    .area
+      %table.table
+        %tr
+          %td
+            .thumbnail= image_tag("screen1.png")
+            %p Create your personal projects and tasks
+          %td
+            .thumbnail= image_tag("screen2.png")
+            %p Give users access to start timing their tasks
+          %td
+            .thumbnail= image_tag("screen3.png")
+            %p Analyze time spent and generate reports for billing
+.main
+  .area
+    %p TimeTracker is easy to use, create expenses, set standard rates for different tasks and export PDF's with your company details to make billing a breeze.
+    %hr.soften
+    %p Check out which package might be right for your organization
+    %p= link_to "See Plans & Pricing", home_plans_path, :class => "btn btn-success btn-large"
+  %hr.soften
+  .bottom
+    - if current_user
+      %p Go to your Dashboard
+      %p= link_to "Dashboard", dashboard_index_path, :class => "btn btn-primary btn-large"
+    - else
+      %p
+        = link_to "Login", new_user_session_path, :class => "btn btn-primary btn-large"
+        = link_to "Try For Free", new_user_registration_path, :class => "btn btn-primary btn-large"
